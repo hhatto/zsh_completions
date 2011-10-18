@@ -1,0 +1,10 @@
+#compdef dot
+
+typeset -A opt_args
+
+_arguments -s -S \
+    "-V[Print version and exit]:" \
+    "-v[Enable verbose mode]" \
+    "-T[Set output format to FORMAT]:format:(canon cmap cmapx cmapx_np dot eps fig gd gd2 gif gv imap imap_np ismap jpe jpeg jpg pdf plain plain-ext png ps ps2 svg svgz tk vml vmlz vrml wbmp x11 xdot xlib)" \
+    "-o[Write output to FILE]::FILE:_files" \
+    "*::args:_files"
