@@ -1,0 +1,46 @@
+#compdef pydoc
+
+local context state line
+typeset -A opt_args
+
+_get_python_modules () {
+    local update_policy
+    zstyle -s ":completion:${curcontext}:" cache-policy update_policy
+    if [[ -z "$update_policy" ]]; then
+        zstyle ":completion:${curcontext}:" cache-policy \
+          _python_modules_caching_policy
+    fi
+
+    if ( [[ ${+_python_modules} -eq 0 ]] || _cache_invalid pythonmodules ) \
+      && ! _retrieve_cache pythonmodules; then
+        _python_modules=(${=${${(f)"$(\
+            python -c "import sys,warnings;from pkgutil import walk_packages as f;\
+            warnings.simplefilter('ignore');\
+            [sys.stdout.write(m[1]+' ') for m in f(sys.path)];")"}[0,-1]}})
+        _python_modules+=(${=${${(f)"$(\
+            python -c "import sys;from pkgutil import iter_modules as f;\
+            [sys.stdout.write(m[1]+' ') for m in f()];")"}[0,-1]}})
+        _store_cache pythonmodules _python_modules
+    fi
+
+    local expl
+    _wanted pythonmodules expl 'Python Modules' compadd -a _python_modules
+}
+
+_python_modules_caching_policy () {
+    local -a oldp
+    oldp=( "$1"(Nmw+1) )    # cache of 1week
+    (( $#oldp ))
+}
+
+_arguments \
+  '-k[keyword]:keyword:' \
+  '-p[port]:port:_ports' \
+  '-g[gui]' \
+  '-w[write out HTML]:file or dir:_files' \
+  ':keyword, topic, module, package, or dotted reference:->lookup' && return 0
+
+_alternative \
+  'keywords:keyword:compadd ${=${${(f)"$(pydoc keywords)"}[2,-1]}}' \
+  'topics:topic:compadd ${=${${(f)"$(pydoc topics)"}[2,-1]}}' \
+  'modules:module:_get_python_modules'
