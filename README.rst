@@ -8,3 +8,4 @@ list
 * pydoc
 * setup.py
 * supervisor(supervisorctl/supervisord)
+* pyres
