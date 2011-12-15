@@ -9,3 +9,4 @@ list
 * setup.py
 * supervisor(supervisorctl/supervisord)
 * pyres
+* groonga
