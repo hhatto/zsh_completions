@@ -1,0 +1,30 @@
+#compdef groonga
+
+typeset -A opt_args
+local context state line
+local hostname=`hostname`
+
+_arguments -S \
+    "-n[create new database]:DB_PATH:" \
+    "-c[run in client mode]" \
+    "-s[run in server mode]" \
+    "-d[run in daemon mode]" \
+    "(-e --encoding)"{-e,--encoding}"[encoding for new database]:encoding:(none euc utf8 sjis latin1 koi8r)" \
+    "(-l --log-level)"{-l,--log-level}"[log level]:log level:(debug info warning error critical)" \
+    "--bind-address[server address to bind (default\: 0.0.0.0)]:ip/hostname:" \
+    "(-p --port)"{-p,--port}"[server port number (default\: 10041)]:port number:" \
+    "(-i --server-id)"{-i,--server-id}"[server ID address (default\: $hostname)]:ip/hostname:_hosts" \
+    "(-t --max-threads)"{-t,--max-threads}"[max number of free threads (default\: 2)]:max threads:" \
+    {--help,-h}"[show usage]:" \
+    "--document-root[document root path]:path:_gnu_generic" \
+    "--protocol[server protocol to listen (default\: gqtp)]:protocol:" \
+    "--version[show groonga version]:" \
+    "--log-path[specify log path]:path:_gnu_generic" \
+    "--query-log-path[specify query log path]:path:_gnu_generic" \
+    "--pid-path[specify pid file path (daemon mode only)]:path:_gnu_generic" \
+    "--config-path[specify config file path]:path:_gnu_generic" \
+    "--cache-limit[specify the max number of cache data]:limit:" \
+    "--file[read commands from specified file]:path:_gnu_generic" \
+    "--default-command-version[specify default command version]:version:" \
+    "--default-match-escalation-threshold[specify default match escalation threshold]:threshold:" \
+    "*::args:_files"
