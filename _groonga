@@ -5,7 +5,7 @@ local context state line
 local hostname=`hostname`
 
 _arguments -S \
-    "-n[create new database]:DB_PATH:" \
+    "-n[create new database]:DB_PATH:_dirs" \
     "-c[run in client mode]" \
     "-s[run in server mode]" \
     "-d[run in daemon mode]" \
