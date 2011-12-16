@@ -7,4 +7,6 @@ _arguments -s -S \
     "-v[Enable verbose mode]" \
     "-T[Set output format to FORMAT]:format:(canon cmap cmapx cmapx_np dot eps fig gd gd2 gif gv imap imap_np ismap jpe jpeg jpg pdf plain plain-ext png ps ps2 svg svgz tk vml vmlz vrml wbmp x11 xdot xlib)" \
     "-o[Write output to FILE]::FILE:_files" \
+    "-m[Memory test (Observe no growth with top. Kill when done.)]" \
+    "-c[Configure plugins (Writes $prefix/lib/graphviz/config with available plugin information.  Needs write privilege.)]" \
     "*::args:_files"
