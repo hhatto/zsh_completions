@@ -17,7 +17,7 @@ _arguments -S \
     "(-t --max-threads)"{-t,--max-threads}"[max number of free threads (default\: 2)]:max threads:" \
     {--help,-h}"[show usage]:" \
     "--document-root[document root path]:path:_gnu_generic" \
-    "--protocol[server protocol to listen (default\: gqtp)]:protocol:" \
+    "--protocol[server protocol to listen (default\: gqtp)]:protocol:(http gqtp)" \
     "--version[show groonga version]:" \
     "--log-path[specify log path]:path:_gnu_generic" \
     "--query-log-path[specify query log path]:path:_gnu_generic" \
