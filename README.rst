@@ -18,3 +18,5 @@ list
 * groonga
   * groonga-suggest-httpd
   * groonga-suggest-learner
+  * groonga-query-log-analyzer
+* dstat
