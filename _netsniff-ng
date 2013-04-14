@@ -59,4 +59,3 @@ _arguments -s -S \
     {-v,--version}"[Show version]:" \
     {-h,--help}"[Guess what?!]:" \
     "*::args:_gnu_generic"
-
