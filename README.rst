@@ -20,3 +20,4 @@ list
   * groonga-suggest-learner
   * groonga-query-log-analyzer
 * dstat
+* netsniff-ng
