@@ -1,4 +1,7 @@
 #compdef netsniff-ng
+#
+# zsh completion function for netsniff-ng
+#
 
 typeset -A opt_args
 local context state line
