@@ -1,4 +1,4 @@
-#compdef jubaclassifier
+#compdef jubaanomaly jubaclassifier jubagraph jubarecommender jubaregression jubastat
 
 typeset -A opt_args
 local context state line
