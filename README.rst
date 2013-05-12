@@ -29,3 +29,4 @@ command list
     - jubarecommender
     - jubaregression
     - jubastat
+- honcho
