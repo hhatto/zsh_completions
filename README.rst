@@ -21,6 +21,8 @@ command list
     - groonga-query-log-analyzer
 - dstat
 - netsniff-ng
+    - netsniff-ng
+    - trafgen
 - jubatus
     - jubaanomaly
     - jubaclassifier
