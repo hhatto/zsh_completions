@@ -2,6 +2,9 @@
 #
 # zsh completion function for netsniff-ng
 #
+# Copyright (C) 2013 Hideo Hattori <hhatto.jp@gmail.com>
+# License: GNU GPL version 2.0
+#
 
 typeset -A opt_args
 local context state line
