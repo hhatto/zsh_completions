@@ -23,6 +23,11 @@ command list
 - netsniff-ng
     - netsniff-ng
     - trafgen
+    - bpfc
+    - ifpps
+    - flowtop
+    - curvetun
+    - astraceroute (ashunt)
 - jubatus
     - jubaanomaly
     - jubaclassifier
