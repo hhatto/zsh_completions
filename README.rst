@@ -29,6 +29,11 @@ command list
     - mausezahn
     - netsniff-ng
     - trafgen
+    - bpfc
+    - ifpps
+    - flowtop
+    - curvetun
+    - astraceroute (ashunt)
 - jubatus
     - jubaanomaly
     - jubaclassifier
