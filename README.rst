@@ -20,7 +20,13 @@ command list
     - groonga-suggest-learner
     - groonga-query-log-analyzer
 - dstat
-- netsniff-ng
+- netsniff-ng (see https://github.com/borkmann/netsniff-ng)
+    - astraceroute
+    - bpfc
+    - curvetun
+    - flowtop
+    - ifpps
+    - mausezahn
     - netsniff-ng
     - trafgen
 - jubatus
