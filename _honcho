@@ -10,6 +10,11 @@ _honcho() {
     "*::honcho commands:_honcho_command"
 }
 
+_honcho_procs() {
+    _procs=(${${(f)"$(echo -e "$(honcho check |& grep Valid | awk 'match($0, /\(.*?\)/) {print substr($0, RSTART+1, RLENGTH-2)}' | sed 's/, /\\n/g')")"}})
+    _values -w 'procs' $_procs
+}
+
 (( $+functions[_honcho_command] )) ||
 _honcho_command() {
   local ret=1
@@ -93,7 +98,7 @@ _honcho_start() {
     "(-e --env)"{-e,--env}"[Environment file\[,file\] (default: .env)]:file:_files" \
     "(-d --app-root)"{-d,--app-root}"[Procfile directory (default: .)]:direcotry:_directories" \
     "(-f --procfile)"{-f,--procfile}"[Procfile path (default: Procfile)]:file:_files" \
-    "*::honcho commands:_honcho"
+    "*::honcho commands:_honcho_procs"
 }
 
 
