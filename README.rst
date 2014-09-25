@@ -5,6 +5,7 @@ my zsh completion functions.
 command list
 ------------
 - dot(Graphviz)
+- pyinvoke
 - pydoc
 - setup.py
 - supervisor
