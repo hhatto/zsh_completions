@@ -11,6 +11,7 @@ _honcho() {
 }
 
 _honcho_procs() {
+    # FIXME: completion proc num +1 times...
     _procs=(${${(f)"$(echo -e "$(honcho check |& grep Valid | awk 'match($0, /\(.*?\)/) {print substr($0, RSTART+1, RLENGTH-2)}' | sed 's/, /\\n/g')")"}})
     _values -w 'procs' $_procs
 }
