@@ -3,25 +3,49 @@
 typeset -A opt_args
 local context state line
 
-_invoke_subcommand () {
-  if [ -f tasks.py ]; then
-    local cache_policy
+function _invoke_subcommands {
+    LISTINGS=( $(invoke -l | tail -n+2 | sed 's/^ *//g' | while read line ; do _remove_docstrings "$line"; done;) )
+    for subcommand_listing in $LISTINGS
+    do
+	local comma_separated="$(echo $subcommand_listing | tr -d ')\n' | tr '(' ',')"
+	local names="$(_echo_split $comma_separated ',')"
+	echo $names | tr '\n' ' '
+    done
+}
+
+function _remove_docstrings {
+    local delimiter_character=' '
+    if echo $1 | grep ')' > /dev/null
+    then
+	delimiter_character=')'
+    fi
+    echo $1 | cut -d "$delimiter_character" -f 1
+}
+
+function _echo_split {
+   local IFS    
+    IFS="$2" read -rA -- arr <<EOF
+$1
+EOF
+    echo "${arr[@]}"
+}
+
+function _complete_invoke_subcommand {
+    local cache_policy cache_name _invoke_subcommands
+    cache_name=invoke/subcommands"$(pwd)"
     zstyle -s ":completion:${curcontext}:" cache-policy cache_policy
 
     if [[ -z "$cache_policy" ]]; then
         zstyle ":completion:${curcontext}:" cache-policy _invoke_subcommands_caching_policy
     fi
 
-    if ( [[ ${+_invoke_subcommands} -eq 0 ]] || _cache_invalid invoke_subcommands ) \
-        && ! _retrieve_cache invoke_subcommands; then
-
-        _invoke_subcommands=(${${(f)"$(inv -l | grep "^  [a-zA-Z]" | awk '{print $1}')"}})
-        _store_cache invoke_subcommands _invoke_subcommands
+    if _cache_invalid "$cache_name" || ! _retrieve_cache "$cache_name"; then
+        _invoke_subcommands=( $(_invoke_subcommands) )
+        _store_cache "$cache_name" _invoke_subcommands
     fi
 
     local expl
     _wanted invoke_subcommands expl 'invoke subcommands' compadd -a _invoke_subcommands
-  fi
 }
 
 _invoke_subcommands_caching_policy() {
@@ -41,4 +65,4 @@ _arguments -s -S \
   "(-r --root)"{-r,--root}"[Change root directory used for finding task modules.]:directory:_directories" \
   "(-V --version)"{-V,--version}"[Show version and exit.]:" \
   "(-w --warn-only)"{-w,--warn-only}"[Warn, instead of failing, when shell commands fail.]" \
-  "*::invoke commands:_invoke_subcommand"
+  "*:invoke command:_complete_invoke_subcommand"
