@@ -44,3 +44,7 @@ command list
     - jubaregression
     - jubastat
 - honcho
+
+License
+-------
+MIT
